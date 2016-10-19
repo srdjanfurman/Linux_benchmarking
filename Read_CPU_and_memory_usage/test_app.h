@@ -82,6 +82,7 @@ int proc_pid_statm (char *pid_num);
 proc_pid_sched_tp proc_pid_sched (char *pid_num);
 proc_pid_io_tp proc_pid_io (char *pid_num);
 proc_pid_stat_tp proc_pid_stat (char *pid_num);
+num fscanf_do_loop (FILE *f_proc_pid_statm, char* frmt_str);
 void ClearScreen ();
 void print_help ();
 
