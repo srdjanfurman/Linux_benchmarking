@@ -1,4 +1,4 @@
 # Debug files
-/Debug/
-.cproject
-.project
+Read_CPU_and_memory_usage/Debug/
+Read_CPU_and_memory_usage/.cproject
+Read_CPU_and_memory_usage/.project
