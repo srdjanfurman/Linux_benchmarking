@@ -1,10 +1,3 @@
-/*
- * test_app.h
- *
- *  Created on: Oct 16, 2016
- *      Author: sonic
- */
-
 #ifndef TEST_APP_H_
 #define TEST_APP_H_
 

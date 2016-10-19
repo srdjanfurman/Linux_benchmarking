@@ -1,22 +1,14 @@
-/*
- * test_funs.c
- *
- *  Created on: Oct 16, 2016
- *      Author: sonic
- */
-
 #include "test_app.h"
 
 
 static double cpu_usage_min = 400.0;
 static double cpu_usage_max = 0.0;
-static num rss_usage_min = 1000000000;
-static num rss_usage_max = 0;
 static double vruntime_min = 1000000000.0;
 static double vruntime_max = 0.0;
 static unsigned long dirty_min = 1000000.0;
 static unsigned long dirty_max = 0;
-
+static num rss_usage_min = 1000000000;
+static num rss_usage_max = 0;
 
 /* Find out PID based on the name of a program */
 int find_pid_by_name (char *prg_name)
@@ -58,7 +50,7 @@ double get_num (const char *str)
 		}
 		str++;
 	}
-	return -1;	/* no number found */
+	return -1;	/* No number found. */
 }
 
 
@@ -222,7 +214,7 @@ proc_meminfo_tp proc_meminfo ()
 	fscanf (f_proc_meminfo, "%s %ld %s", p_swap_free, &swap_free, p_kB);
 	fscanf (f_proc_meminfo, "%s %ld %s", p_dirty, &dirty, p_kB);
 
-	/* Find min/max dirty */
+	/* Find min/max dirty. */
 	if (dirty > dirty_max)
 	{
 		dirty_max = dirty;
@@ -269,7 +261,7 @@ proc_meminfo_tp proc_meminfo ()
 /* /proc/[pid]/sched */
 proc_pid_sched_tp proc_pid_sched (char *pid_num)
 {
-/*	Timing fields are in [ns] */
+/*	Timing fields are in [ns]. */
 	FILE *f_read_proc_pid_sched = NULL;
 	char temp[1000];
 	char cmd[50] = {0};
@@ -306,8 +298,6 @@ proc_pid_sched_tp proc_pid_sched (char *pid_num)
 		if (!strncmp (q_sum_exec_runtime, p, strlen (q_sum_exec_runtime)))
 		{
 			sum_exec_runtime = get_num (strtok (NULL, ":,"));
-/*			printf ("%lf\n", sum_exec_runtime);*/
-/*			printf ("%d\n", get_num (strtok (NULL, ":,")));*/
 		}
 
 		if (!strncmp (q_wait_max, p, strlen (q_wait_max)))
@@ -336,7 +326,7 @@ proc_pid_sched_tp proc_pid_sched (char *pid_num)
 		}
 	}
 
-	/* Find min/max virtual run time */
+	/* Find min/max virtual run time. */
 	if (vruntime > vruntime_max)
 	{
 		vruntime_max = vruntime;
@@ -457,7 +447,7 @@ proc_pid_io_tp proc_pid_io (char *pid_num)
 proc_pid_stat_tp proc_pid_stat (char *pid_num)
 {
 	FILE *f_proc_pid_stat = NULL;
-	/* System number of clock ticks per second */
+	/* System number of clock ticks per second. */
 	long tickspersec = sysconf (_SC_CLK_TCK);
 	char cmd[50] = {0};
 	proc_pid_stat_tp ppstat_tp;
@@ -496,7 +486,7 @@ proc_pid_stat_tp proc_pid_stat (char *pid_num)
 	double seconds = (uptime - value[18]) / (double)tickspersec;
 	double cpu_usage = 100 * ((total_time / tickspersec) / seconds);
 
-	/* Find min/max avg CPU usage */
+	/* Find min/max avg CPU usage. */
 	if (cpu_usage > cpu_usage_max)
 	{
 		cpu_usage_max = cpu_usage;
@@ -507,7 +497,7 @@ proc_pid_stat_tp proc_pid_stat (char *pid_num)
 		cpu_usage_min = cpu_usage;
 	}
 
-	/* Find min/max RSS usage */
+	/* Find min/max RSS usage. */
 	if (value[20] > rss_usage_max)
 	{
 		rss_usage_max = value[20];
@@ -518,7 +508,7 @@ proc_pid_stat_tp proc_pid_stat (char *pid_num)
 		rss_usage_min = value[20];
 	}
 
-	/* Set CPU usage flags */
+	/* Set CPU usage flags. */
 	switch (value[36])
 	{
 		case 0:
@@ -534,7 +524,7 @@ proc_pid_stat_tp proc_pid_stat (char *pid_num)
 			ppstat_tp.cpu3_usage_counter++;
 				break;
 		default:
-				printf ("No active core.\n");	/* we shouldn't be here */
+				printf ("No active core.\n");	/* We shouldn't get here... */
 				break;
 	}
 	ppstat_tp.cpu_usage_sum += cpu_usage;

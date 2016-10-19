@@ -1,11 +1,4 @@
 /*
- * test_app.c
- *
- *  Created on: Oct 16, 2016
- *      Author: sonic
- */
-
-/*
  *	Program displays CPU and memory usage of program <prg_name>
  *	using linux /proc/ virtual fs.
  *  http://www.tldp.org/LDP/sag/html/proc-fs.html
@@ -174,8 +167,10 @@ int main (int argc, char *argv[])
 	{
 		printf ("*** I/O results in process %s\n\n", cpu_u_c.tcomm);
 		printf ("---------------------------------------------------\n");
-		printf ("Directly read from disk: %llu bytes\n\n", r_w_bytes.read_bytes);
-		printf ("Sent to the storage layer: %llu bytes\n\n", r_w_bytes.write_bytes);
+		printf (
+			"Directly read from disk: %llu bytes\n\n", r_w_bytes.read_bytes);
+		printf (
+			"Sent to the storage layer: %llu bytes\n\n", r_w_bytes.write_bytes);
 	}
 
 	if (!strcmp (argv[1], "--pid_sched"))
