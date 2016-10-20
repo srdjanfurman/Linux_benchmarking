@@ -17,7 +17,6 @@ sudo apt-get install libncurses5
 ./test_app <prg_name>
 Alternative: top -p <pid>
 ```
-
 **Example usage:**
 ```
 ./test_app
@@ -27,7 +26,6 @@ Alternative: top -p <pid>
 
 ./test_app --pid_io aio_tio > test_log.log
 ```
-
 **NOTE:**
 ```
 /proc/ virtual fs explanation:
