@@ -1,24 +1,3 @@
-/*
- *	Program displays CPU and memory usage of program <prg_name>
- *	using linux /proc/ virtual fs.
- *  http://www.tldp.org/LDP/sag/html/proc-fs.html
- *
- *	Build: gcc -Wall test_app.c -o test_app -lcurses
- *
- *	Usage: ./test_app <prg_name>
- *	Alternative: top -p <pid>
- *
- *	Author: Srdjan Furman
- *
- *	NOTE:
- *
- *	/proc/ virtual fs explanation:
- *	http://man7.org/linux/man-pages/man5/proc.5.html
- *
- *
- *	2015-05-19
- */
-
 #include <stdio.h>		/* printf (), sprintf (), fprintf (), fscanf () */
 #include <unistd.h>		/* sleep (), usleep () */
 #include <dirent.h>		/* PATH_MAX */
